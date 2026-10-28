@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catat Uang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <div class="head">
+        <h1>Pengeluaran</h1>
+        <p id="totalExpense"></p>
+      </div>
+
+      <!-- Form Input -->
+      <form id="expenseForm">
+        <div class="field">
+          <label for="expenseName">Nama Pengeluaran</label>
+          <input type="text" id="expenseName" placeholder="Rokok" required />
+        </div>
+        <div class="field">
+          <label for="expenseNominal">Nominal</label>
+          <input
+            type="number"
+            id="expenseNominal"
+            placeholder="16000"
+            min="1"
+            required
+          />
+        </div>
+        <div class="field">
+          <label for="expenseCategory">Kategori</label>
+          <select id="expenseCategory">
+            <option value="makanan">Makanan</option>
+            <option value="transport">Transportasi</option>
+            <option value="belanja">Belanja</option>
+            <option value="lainnya">Lainnya</option>
+          </select>
+        </div>
+        <button type="submit">Tambah</button>
+      </form>
+
+      <div class="footer">
+        <h1>Total <span id="expenseTotal">Rp 0</span></h1>
+        <ul id="expenseList"></ul>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
