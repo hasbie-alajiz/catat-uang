@@ -1,0 +1,72 @@
+:root {
+  --bg: #121418; /* latar halaman */
+  --card: #1c1f26; /* latar kartu & form */
+  --border: #2a2e37; /* garis pemisah, border input */
+  --text: #e8eaed; /* teks utama */
+  --muted: #9aa0ab; /* teks sekunder (label, kategori) */
+  --accent: #4f8cff; /* satu-satunya warna aksen */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  padding: 24px 16px;
+}
+
+.app {
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.field {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+label {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 4px;
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
