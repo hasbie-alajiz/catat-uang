@@ -29,15 +29,28 @@ expenseForm.addEventListener("submit", function(e){
 
 // expenseList.innerHTML = '';
 
+function deleteExpense(index) {
+    expenses.splice(index, 1);
+    renderExpenses();
+}
+
 
 function renderExpenses(){
     let renderList = '';
-    let renderTotal = '';
+    let total = 0;
     for(let i = 0; i < expenses.length; i++){
-        renderList += `<li>${expenses[i].name}</li>`;
-        renderTotal += `Rp ${expenses[i].nominal}`;
+        renderList += `
+        <li>
+            <span>${expenses[i].name}</span>
+            <span>Rp ${expenses[i].nominal}</span>
+            <span>${expenses[i].category}</span>
+            <button onclick = "deleteExpense(${i})">Hapus</button>
+        </li>
+        `;
+
+        total += expenses[i].nominal;
     }
+
+    expenseTotal.textContent = `Rp ${total}`;
     expenseList.innerHTML = renderList;
-    return;
 }
-    
