@@ -2,11 +2,14 @@ const expenseForm = document.getElementById('expenseForm');
 const expenseList = document.getElementById('expenseList');
 const expenseTotal = document.getElementById('expenseTotal');
 
+const filterCategory = document.getElementById('filterCategory');
+
 // formatting currency to IDR
 const currencyFormat = (amount) => amount.toLocaleString('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 });
 
 const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
-expenseForm.addEventListener("submit", function(e){
+
+expenseForm.addEventListener('submit', function(e){
     e.preventDefault();
 
     const expenseName = document.getElementById('expenseName').value;
@@ -40,11 +43,22 @@ function saveExpenses(){
     localStorage.setItem('expenses', JSON.stringify(expenses));
 }
 
+filterCategory.addEventListener('change', function(){
+    renderExpenses();
+})
+
 
 function renderExpenses(){
+    let selectedCategory = filterCategory.value;
     let renderList = '';
     let total = 0;
     for(let i = 0; i < expenses.length; i++){
+        if(selectedCategory !== 'semua' && selectedCategory !== expenses[i].category) {
+            continue;
+        } else {
+
+        }
+
         renderList += `
         <li>
             <span>${expenses[i].name}</span>
