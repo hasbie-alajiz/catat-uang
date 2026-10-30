@@ -2,8 +2,10 @@ const expenseForm = document.getElementById('expenseForm');
 const expenseList = document.getElementById('expenseList');
 const expenseTotal = document.getElementById('expenseTotal');
 
-const expenses = [];
+// formatting currency to IDR
+const currencyFormat = (amount) => amount.toLocaleString('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 });
 
+const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
 expenseForm.addEventListener("submit", function(e){
     e.preventDefault();
 
@@ -18,8 +20,7 @@ expenseForm.addEventListener("submit", function(e){
     }
 
     expenses.push(expense);
-
-    // console.log(expenses);
+    saveExpenses();
 
     renderExpenses();
 
@@ -31,7 +32,12 @@ expenseForm.addEventListener("submit", function(e){
 
 function deleteExpense(index) {
     expenses.splice(index, 1);
+    saveExpenses();
     renderExpenses();
+}
+
+function saveExpenses(){
+    localStorage.setItem('expenses', JSON.stringify(expenses));
 }
 
 
@@ -42,7 +48,7 @@ function renderExpenses(){
         renderList += `
         <li>
             <span>${expenses[i].name}</span>
-            <span>Rp ${expenses[i].nominal}</span>
+            <span>${currencyFormat(expenses[i].nominal)}</span>
             <span>${expenses[i].category}</span>
             <button onclick = "deleteExpense(${i})">Hapus</button>
         </li>
@@ -51,6 +57,8 @@ function renderExpenses(){
         total += expenses[i].nominal;
     }
 
-    expenseTotal.textContent = `Rp ${total}`;
+    expenseTotal.textContent = currencyFormat(total);
     expenseList.innerHTML = renderList;
 }
+
+renderExpenses();
