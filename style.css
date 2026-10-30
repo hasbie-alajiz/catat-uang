@@ -70,3 +70,21 @@ button {
     border-radius: 8px;
     cursor: pointer;
 }
+
+#expenseList {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+}
+
+#expenseList li {
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 12px;
+}
+
+ul li button {
+    width: 64px;
+}
